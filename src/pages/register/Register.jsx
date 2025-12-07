@@ -15,7 +15,7 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState("");
+ 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -74,7 +74,12 @@ const Register = () => {
         });
       } catch (error) {
         console.error(error);
-        setSuccess("Something went wrong. Try again!");
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Something went wrong!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
       }
     }
   };
@@ -86,11 +91,7 @@ const Register = () => {
           Register for <span className="text-[#26FF60]">RainDrop</span>
         </h2>
 
-        {success && (
-          <p className="bg-green-200 text-green-700 p-3 rounded-lg mb-4 text-center">
-            {success}
-          </p>
-        )}
+       
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
